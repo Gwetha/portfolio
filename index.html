@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a48d24d44b.js" crossorigin="anonymous"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,300&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <title>Gwetha Portfolio</title>
+</head>
+<body>
+   
+    <section class="banner">
+        <div class="text-box">
+            <h1>Lavenda Gwetha</h1>
+            <p>Hallo! <br>
+                I'm glad you were able to find my page. <br>
+                Thank you and welcome, connect with me to get my services.
+            </p>
+        </div>
+    </section>
+
+    <!--about section-->
+    <section id="about">
+        <div class="container">
+            <div class="row-1">
+                <div class="about-col-1">
+                    <img src="Images/creator.jpg">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>Hallo, Gwetha here at your service. I'm a freelancer FrontEnd Developer, ready to serve you 
+                        according to your preferences. Feel free to contact me at any given time.
+                        Looking forward to.
+                    </p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>UI/UX</span><br>Designing Web Interfaces.</li>
+                            <li><span>Web Development</span><br>Designing Websites.</li>
+                            <li><span>Designing</span><br>Mobile/ Desktop Application Design</li>
+                            <li><span>Multilingual</span><br>Communicating in German Language.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>2022 - Current</span><br>UI/UX and Web Development Training at freeCodeCamp.org</li>
+                            <li><span>2022-Current</span><br>Building designs using the Figma editor</li>
+                            <li><span>2018-2022</span><br>BIT University of Eldoret</li>
+                            <li><span>2022-Current</span><br>Deutsch Lernen.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2022-Current</span><br>UI/UX and Web Development Training at freeCodeCamp.org.</li>
+                            <li><span>2022-Current</span><br>Deutsch Lernen von Udemy.com.</li>
+                            <li><span>2018-2022</span><br>Bs. Information Technology University of Eldoret</li>
+                            <li><span>April 2018-June 2018</span><br>Computer Packages Comboni Polytechnic, Gilgil, Nakuru</li>
+                            <li><span>2014-2017</span><br>Nyakach Girl's High School</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--contact section-->
+    <section class="contact-us">
+        <div class="row">
+            <div class="contact-col">
+                <div>
+                    <i class="fa-solid fa-location"></i>
+                    <span>
+                        <h5>Kenya</h5>
+                        <p>Nakuru City County</p>
+                    </span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-phone"></i>
+                    <span>
+                        <h5>0712199387</h5>
+                        <p>Call / WhatsApp</p>
+                    </span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>
+                        <h5>lavenda23gwetha@gmail.com</h5>
+                        <p>Email Me Today</p>
+                    </span>
+                </div>
+            </div>
+    
+    
+            <div class="contact-col">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Enter Name" required>
+                    <input type="email" name="Email" placeholder="Enter Email" required>
+                    <input type="text" name="Subject" placeholder="Enter Your Subject" required>
+                    <textarea rows="8" name="Message" placeholder="Message" required></textarea>
+                    <button type="submit" class="hero-btn red-btn">Send Message</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright @Gwetha..</p>
+        </div>
+    </section>
+    
+
+
+    <script>
+
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+        
+    </script>
+
+    <script>
+        
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwsYALnfded26_Np9f83f5rPmYrXXLklm6ysloWsdrGYgY5w6nkbPkNJF6kgRsCHn8Psg/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Sent Successfully!"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    </script>
+</body>
+</html>
